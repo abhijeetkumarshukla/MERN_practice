@@ -4,12 +4,15 @@ const dotenv = require('dotenv');
 const connection = require('./config/db');
 const userRouter = require('./routes/user.routes');
 const authUser = require('./middlewares/auth.middleware');
+const productRouter = require('./routes/product.route');
 dotenv.config()
+const cors = require('cors')
 const port = process.env.PORT 
 
 app.use(express.json())
 app.use('/user', userRouter)
-
+app.use('/product',authUser,productRouter)
+app.use(cors())
 app.get('/' , (req,res)=>{
     res.status(201).json({message:'hello mern'})
 })
