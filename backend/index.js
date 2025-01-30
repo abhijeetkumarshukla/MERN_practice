@@ -12,7 +12,7 @@ const port = process.env.PORT
 app.use(express.json())
 app.use('/user', userRouter)
 app.use('/product',authUser,productRouter)
-app.use(cors())
+app.use(cors({  origin:"*"}))
 app.get('/' , (req,res)=>{
     res.status(201).json({message:'hello mern'})
 })
