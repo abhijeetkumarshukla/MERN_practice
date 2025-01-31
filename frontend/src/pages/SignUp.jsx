@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -15,24 +16,16 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://mern-practice-4.onrender.com/user/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await axios.post(
+        "https://mern-practice-4.onrender.com/user/register",
+        formData,  { withCredentials: true } 
+      );
 
-      if (res.ok) {
-        const data = await res.json();
-        alert("Registration successful!");
-        console.log(data);
-      } else {
-        alert("Registration failed.");
-      }
+      alert("Registration successful!");
+      console.log(res.data);
     } catch (error) {
       console.error("Error:", error);
-      alert("Network error. Check backend connection.");
+      alert(error.response?.data?.message || "Registration failed.");
     }
   };
 
@@ -43,7 +36,7 @@ const SignUp = () => {
         className="flex flex-col gap-6 border p-8 rounded-md bg-gradient-to-r from-indigo-300 via-sky-300 to-emerald-300"
       >
         <h1 className="text-center font-black text-2xl">Register Page</h1>
-        
+
         <input
           name="userName"
           onChange={handleInput}
@@ -68,7 +61,7 @@ const SignUp = () => {
           type="password"
           placeholder="Enter your password"
         />
-        
+
         <button
           className="w-full border p-2 rounded-md font-medium bg-green-500 text-white"
           type="submit"
@@ -81,7 +74,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
- 
-
- 
