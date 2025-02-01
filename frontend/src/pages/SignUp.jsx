@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import axios from "axios";
 
 const SignUp = () => {
@@ -7,6 +8,7 @@ const SignUp = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -18,11 +20,13 @@ const SignUp = () => {
     try {
       const res = await axios.post(
         "https://mern-practice-4.onrender.com/user/register",
-        formData,  { withCredentials: true } 
+        formData,
+        { withCredentials: true }
       );
 
       alert("Registration successful!");
       console.log(res.data);
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error);
       alert(error.response?.data?.message || "Registration failed.");

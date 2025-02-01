@@ -24,12 +24,15 @@ const Login = () => {
         "https://mern-practice-4.onrender.com/user/login",
         formData
       );
-
+      const token = res.data.token;
+      localStorage.setItem("authToken", token);
       alert("Login successful!");
       console.log("Login Response:", res.data);
     } catch (err) {
       console.error("Login failed:", err.response?.data || err.message);
-      setError(err.response?.data?.message || "Login failed. Please try again.");
+      setError(
+        err.response?.data?.message || "Login failed. Please try again."
+      );
     } finally {
       setLoading(false);
     }
