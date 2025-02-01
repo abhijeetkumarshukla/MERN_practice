@@ -1,3 +1,4 @@
+const cors = require('cors')
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
@@ -6,11 +7,10 @@ const userRouter = require('./routes/user.routes');
 const authUser = require('./middlewares/auth.middleware');
 const productRouter = require('./routes/product.route');
 dotenv.config()
-const cors = require('cors')
 const port = process.env.PORT 
 
-app.use(express.json())
 app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(express.json())
 app.use('/user', userRouter)
 app.use('/product',authUser,productRouter)
  
