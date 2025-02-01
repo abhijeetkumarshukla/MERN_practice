@@ -24,6 +24,8 @@ const SignUp = () => {
         { withCredentials: true }
       );
 
+      console.log("fbhjdsbfkjdbnkjsfbvhfbsvkjnfj,jsndhjkvhb jhsdbkjnf cmdsn cv", res)
+
       alert("Registration successful!");
       console.log(res.data);
       navigate("/login");
