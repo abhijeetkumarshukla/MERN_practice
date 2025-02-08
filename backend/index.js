@@ -9,8 +9,8 @@ const productRouter = require('./routes/product.route');
 dotenv.config()
 const port = process.env.PORT 
 
-app.use(cors({ origin: ["http://localhost:5173", "https://mern-practice-4.onrender.com"], credentials: true }));
 app.use(express.json())
+app.use(cors({ origin: ["http://localhost:5173", "https://mern-practice-4.onrender.com"], credentials: true }));
 app.use('/user', userRouter)
 app.use('/product',authUser,productRouter)
  
