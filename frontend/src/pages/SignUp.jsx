@@ -18,12 +18,15 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "https://mern-practice-4.onrender.com/user/register",
-        formData,
-        { withCredentials: true }
-      );
-
+      const res = await axios({
+        method: "post",
+        url: "https://mern-practice-4.onrender.com/user/register",
+        data: formData,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        withCredentials: true
+      });
       console.log("fbhjdsbfkjdbnkjsfbvhfbsvkjnfj,jsndhjkvhb jhsdbkjnf cmdsn cv", res)
 
       alert("Registration successful!");

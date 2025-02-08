@@ -10,7 +10,13 @@ dotenv.config()
 const port = process.env.PORT 
 
 app.use(express.json())
-app.use(cors({ origin: ["http://localhost:5173", "https://mern-practice-4.onrender.com"], credentials: true }));
+// app.use(cors({ origin: ["http://localhost:5173", "https://mern-practice-4.onrender.com"], credentials: true }));
+
+app.use(cors({
+    origin: "https://mern-practice-brown.vercel.app", 
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true
+  }));
 app.use('/user', userRouter)
 app.use('/product',authUser,productRouter)
  
